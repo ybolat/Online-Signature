@@ -22,7 +22,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -48,9 +50,16 @@ public class UserService implements UserDetailsService {
             throw new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "User", "username"));
         }
     }
+
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "User", "id")));
+    }
+
+    public List<UserDtoResponse> getAllUsers() {
+        UserMapper userMapper = new UserMapper();
+        return userRepository.findAll().stream()
+                .map(userMapper::userToDTO).collect(Collectors.toList());
     }
 
     public ResponseEntity<UserDtoResponse> authorization(String username, String password, HttpServletRequest request) {
