@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
     private final JWTTokenProvider jwtTokenProvider;
 
     @Autowired
-    public UserService(UserRepository userRepository,  AuthenticationManager authenticationManager,
+    public UserService(UserRepository userRepository, @Lazy AuthenticationManager authenticationManager,
                        JWTTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
