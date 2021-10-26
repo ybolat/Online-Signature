@@ -2,6 +2,7 @@ create table users
 (
     id           serial primary key,
     username     varchar(255) not null unique,
+    password     varchar(255) not null,
     base_role    varchar(255) not null,
     is_locked    boolean default false,
     created_date timestamp    not null
