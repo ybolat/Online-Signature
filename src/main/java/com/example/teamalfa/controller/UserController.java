@@ -34,13 +34,4 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-//    public static void main(String[] args) throws DocumentException, IOException {
-//        Document document = new Document();
-//        PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\User\\Documents\\sample\\sample.pdf"));
-//        document.open();
-//        Image img = Image.getInstance("C:\\Users\\User\\Documents\\sample\\logo.png");
-//        img.setAbsolutePosition(450f, 10f);
-//        document.add(img);
-//        document.close();
-//    }
 }

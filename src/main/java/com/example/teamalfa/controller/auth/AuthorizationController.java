@@ -1,4 +1,4 @@
-package com.example.teamalfa.controller;
+package com.example.teamalfa.controller.auth;
 
 import com.example.teamalfa.dto.requestDto.UserDtoRequest;
 import com.example.teamalfa.dto.responseDto.UserDtoResponse;
