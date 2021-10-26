@@ -42,7 +42,7 @@ public class DocumentForSigningService {
         documentForSigning.setUserSender(userService.findByUsername(principal.getName()));
         documentForSigning.setUserReceiver(userService.findByUsername(documentForSigningDtoRequest.getUserReceiveUsername()));
 
-        Document document = documentService.createDocument(documentForSigningDtoRequest.getDocumentBase64(), documentForSigningDtoRequest.getFileName());
+        Document document = documentService.createDocument(principal.getName(), documentForSigningDtoRequest.getDocumentBase64(), documentForSigningDtoRequest.getFileName());
         documentForSigning.setDocument(document);
 
         documentForSigning.setStatus(DocumentForSigningStatus.SENT);

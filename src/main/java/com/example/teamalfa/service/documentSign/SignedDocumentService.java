@@ -58,7 +58,7 @@ public class SignedDocumentService {
             signedDocument.setUserSender(documentForSigning.getUserSender());
             signedDocument.setUserReceiver(documentForSigning.getUserReceiver());
 
-            Document document = documentService.updateDocument(documentForSigning.getDocument(), signedDocumentDtoRequest.getDocumentBase64());
+            Document document = documentService.updateDocument(documentForSigning.getDocument(), null);
             signedDocument.setDocument(document);
 
             documentForSigningService.updateStatus(documentForSigning, DocumentForSigningStatus.SIGNED);
@@ -71,4 +71,9 @@ public class SignedDocumentService {
             }
         }
     }
+
+    private String singDocument(String documentBase64) {
+        return "";
+    }
+
 }
