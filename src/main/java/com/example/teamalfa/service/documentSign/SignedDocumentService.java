@@ -54,6 +54,9 @@ public class SignedDocumentService {
         User user = userService.findByUsername(principal.getName());
 
         if (user.getId().equals(documentForSigning.getUserReceiver().getId())) {
+
+            documentService.signDocument(documentForSigning.getDocument().getPdfBase64(), documentForSigning.getDocument().getFileName(), signedDocumentDtoRequest.getSingImage64());
+
             SignedDocument signedDocument = new SignedDocument();
             signedDocument.setUserSender(documentForSigning.getUserSender());
             signedDocument.setUserReceiver(documentForSigning.getUserReceiver());
