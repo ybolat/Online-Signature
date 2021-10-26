@@ -53,8 +53,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                     return;
                 }
                 if (jwtTokenProvider.isTokenValid(username, token, request)) {
-                    List<GrantedAuthority> authorities = new ArrayList<>(userPrincipal.getAuthorities());
-                    Authentication authentication = jwtTokenProvider.getAuthentication(username, authorities, request);
+                    System.out.println(userPrincipal.getAuthorities());
+                    Authentication authentication = jwtTokenProvider.getAuthentication(username, null, request);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } else {
                     SecurityContextHolder.clearContext();
