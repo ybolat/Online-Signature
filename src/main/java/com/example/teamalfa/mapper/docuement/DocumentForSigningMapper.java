@@ -2,6 +2,7 @@ package com.example.teamalfa.mapper.docuement;
 
 import com.example.teamalfa.dto.responseDto.documentSign.DocumentForSigningDtoResponse;
 import com.example.teamalfa.mapper.UserMapper;
+import com.example.teamalfa.model.document.Document;
 import com.example.teamalfa.model.documentSign.DocumentForSigning;
 
 public class DocumentForSigningMapper {
@@ -13,6 +14,7 @@ public class DocumentForSigningMapper {
         documentForSigningDtoResponse.setCreatedDate(documentForSigning.getCreatedDate());
         documentForSigningDtoResponse.setUserSender(new UserMapper().userToDTO(documentForSigning.getUserSender()));
         documentForSigningDtoResponse.setUserReceiver(new UserMapper().userToDTO(documentForSigning.getUserReceiver()));
+        documentForSigningDtoResponse.setDocument(new DocumentMapper().documentToDto(documentForSigning.getDocument()));
         return documentForSigningDtoResponse;
     }
 }
