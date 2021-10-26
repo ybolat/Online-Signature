@@ -13,6 +13,12 @@ public class TeamAlfaApplication {
     public static void main(String[] args) {
         SpringApplication.run(TeamAlfaApplication.class, args);
     }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public WebMvcConfigurer corsConfigure() {
         return new WebMvcConfigurer() {
