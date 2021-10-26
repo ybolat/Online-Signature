@@ -2,7 +2,8 @@ package com.example.teamalfa.service;
 
 import com.example.teamalfa.constant.SecurityConstant;
 import com.example.teamalfa.dto.responseDto.UserDtoResponse;
-import com.example.teamalfa.exception.domain.UserNotFoundException;
+import com.example.teamalfa.exception.ExceptionDescription;
+import com.example.teamalfa.exception.domain.CustomNotFoundException;
 import com.example.teamalfa.mapper.UserMapper;
 import com.example.teamalfa.model.User;
 import com.example.teamalfa.repository.UserRepository;
@@ -14,17 +15,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -48,8 +45,12 @@ public class UserService implements UserDetailsService {
         if (user.isPresent()) {
             return new UserPrincipal(user.get());
         } else {
-            throw new UserNotFoundException("User not found by username: " + username);
+            throw new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "User", "username"));
         }
+    }
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "User", "id")));
     }
 
     public ResponseEntity<UserDtoResponse> authorization(String username, String password, HttpServletRequest request) {
@@ -61,7 +62,7 @@ public class UserService implements UserDetailsService {
             HttpHeaders jwt = getJwtHeader(userPrincipal, ipFromClient);
             return new ResponseEntity<>(new UserMapper().userToDTO(user.get()), jwt, HttpStatus.OK);
         }
-        throw new UserNotFoundException("User not found by username: " + username);
+        throw new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "User", "username"));
     }
 
     private HttpHeaders getJwtHeader(UserPrincipal userPrincipal, String ipFromClient) {

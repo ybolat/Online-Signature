@@ -27,6 +27,9 @@ public class DocumentForSigning {
     @JoinColumn(name = "document_id")
     private Document document;
 
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 

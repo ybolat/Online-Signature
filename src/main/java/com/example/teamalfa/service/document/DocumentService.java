@@ -27,4 +27,15 @@ public class DocumentService {
             throw new RepositoryException(String.format(ExceptionDescription.RepositoryException, "document", "creating"));
         }
     }
+
+    public Document updateDocument(Document document, String documentBase64) {
+        document.setPdfBase64(documentBase64);
+        try {
+             return documentRepository.save(document);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new RepositoryException(String.format(ExceptionDescription.RepositoryException, "document", "updating"));
+        }
+    }
 }

@@ -51,6 +51,7 @@ create table document_for_signing(
     user_sender_id bigint not null,
     user_receiver_id bigint not null,
     document_id bigint not null,
+    status varchar(255) not null,
     created_date timestamp not null,
     constraint fk_user_sender_id foreign key (user_sender_id) references users (id),
     constraint fk_user_receiver_id foreign key (user_receiver_id) references users (id),

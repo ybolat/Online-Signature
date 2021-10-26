@@ -1,7 +1,7 @@
 package com.example.teamalfa.exception;
 
+import com.example.teamalfa.exception.domain.CustomNotFoundException;
 import com.example.teamalfa.exception.domain.RepositoryException;
-import com.example.teamalfa.exception.domain.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -45,10 +45,12 @@ public class ExceptionHandling {
         return createHttpResponse(UNAUTHORIZED, ACCOUNT_LOCKED);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<HttpResponseException> userNotFoundException(UserNotFoundException exception) {
-        return createHttpResponse(NOT_FOUND, exception.getMessage());
+    @ExceptionHandler(CustomNotFoundException.class)
+    public ResponseEntity<HttpResponseException> CustomNotFoundException(CustomNotFoundException exception) {
+        LOGGER.error(exception.getMessage());
+        return createHttpResponse(BAD_REQUEST, exception.getMessage());
     }
+
 
     @ExceptionHandler(RepositoryException.class)
     public ResponseEntity<HttpResponseException> RepositoryException(RepositoryException exception) {
