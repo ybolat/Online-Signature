@@ -17,9 +17,10 @@ public class DocumentService {
         this.documentRepository = documentRepository;
     }
 
-    public Document createDocument(String documentBase64) {
+    public Document createDocument(String documentBase64, String fileName) {
         Document document = new Document();
         document.setPdfBase64(documentBase64);
+        document.setFileName(fileName);
         try {
             return documentRepository.save(document);
         } catch (Exception e) {

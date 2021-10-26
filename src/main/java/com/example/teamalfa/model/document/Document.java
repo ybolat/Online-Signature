@@ -17,6 +17,9 @@ public class Document {
     @Column(name = "pdf_base64")
     private String pdfBase64;
 
+    @Column(name = "file_name")
+    private String fileName;
+
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 

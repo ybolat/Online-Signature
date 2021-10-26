@@ -9,6 +9,7 @@ public class DocumentMapper {
         DocumentDtoResponse documentDtoResponse = new DocumentDtoResponse();
         documentDtoResponse.setId(document.getId());
         documentDtoResponse.setDocumentBase64(document.getPdfBase64());
+        documentDtoResponse.setFileName(document.getFileName());
         return documentDtoResponse;
     }
 }

@@ -10,6 +10,7 @@ create table users
 create table document(
     id serial primary key,
     pdf_base64 text not null,
+    file_name varchar(255) not null,
     created_date timestamp not null
 );
 
