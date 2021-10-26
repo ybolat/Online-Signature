@@ -23,7 +23,7 @@ public class AuthorizationController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/authorization")
     public ResponseEntity<UserDtoResponse> login(@RequestBody UserDtoRequest userDtoRequest, HttpServletRequest request){
         return userService.authorization(userDtoRequest.getUsername().toLowerCase(), userDtoRequest.getPassword(), request);
     }
