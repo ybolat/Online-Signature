@@ -23,7 +23,7 @@ public class JWTTokenProvider {
 
     public String generateToken(UserPrincipal userPrincipal, String ipFromClient) {
         return JWT.create().withIssuer(ISSUER).withAudience(AUDIENCE)
-                .withIssuedAt(new Date()).withSubject(userPrincipal.getId())
+                .withIssuedAt(new Date()).withSubject(userPrincipal.getUsername())
                 .withClaim(CLIENT_IP, ipFromClient)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET));
