@@ -5,9 +5,8 @@ public class SecurityConstant {
     public static final long EXPIRATION_TIME = 360_000_0 ;
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String CLIENT_IP = "Client ip";
-    public static final String JWT_TOKEN_HEADER = "Jwt-Token";
+    public static final String JWT_TOKEN_HEADER = "jwt";
     public static final String OPTIONS_HTTP_METHOD = "OPTIONS";
-    public static final String POST_HTTP_METHOD = "POST";
     public static final String ISSUER = "Astanait.edu.kz server";
     public static final String AUDIENCE = "Astanait.edu.kz client";
     public static final String SECRET = "SecretJWTKeyAlikhanSecretKeyLaLaLa5647ahfyenckzueicjaehgiahfnvjfyrheidhfjsnagfyeh";
