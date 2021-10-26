@@ -33,7 +33,7 @@ public class DocumentForSigningService {
     }
 
     public DocumentForSigning findById(Long id) {
-        return  documentForSigningRepository.findById(id)
+        return documentForSigningRepository.findById(id)
                 .orElseThrow(() -> new CustomNotFoundException(String.format(ExceptionDescription.CustomNotFoundException, "Document for signing", "id")));
     }
 

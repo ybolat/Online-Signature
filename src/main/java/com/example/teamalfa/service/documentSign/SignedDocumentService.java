@@ -55,13 +55,13 @@ public class SignedDocumentService {
 
         if (user.getId().equals(documentForSigning.getUserReceiver().getId())) {
 
-            documentService.signDocument(documentForSigning.getDocument().getPdfBase64(), documentForSigning.getDocument().getFileName(), signedDocumentDtoRequest.getSingImage64());
+            String b64 = documentService.signDocument(documentForSigning.getDocument().getPdfBase64(), documentForSigning.getDocument().getFileName(), signedDocumentDtoRequest.getSingImage64());
 
             SignedDocument signedDocument = new SignedDocument();
             signedDocument.setUserSender(documentForSigning.getUserSender());
             signedDocument.setUserReceiver(documentForSigning.getUserReceiver());
 
-            Document document = documentService.updateDocument(documentForSigning.getDocument(), null);
+            Document document = documentService.updateDocument(documentForSigning.getDocument(), b64);
             signedDocument.setDocument(document);
 
             documentForSigningService.updateStatus(documentForSigning, DocumentForSigningStatus.SIGNED);
