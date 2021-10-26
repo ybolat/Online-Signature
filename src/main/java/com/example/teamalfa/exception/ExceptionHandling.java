@@ -1,5 +1,6 @@
 package com.example.teamalfa.exception;
 
+import com.example.teamalfa.exception.domain.RepositoryException;
 import com.example.teamalfa.exception.domain.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,12 @@ public class ExceptionHandling {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<HttpResponseException> userNotFoundException(UserNotFoundException exception) {
         return createHttpResponse(NOT_FOUND, exception.getMessage());
+    }
+
+    @ExceptionHandler(RepositoryException.class)
+    public ResponseEntity<HttpResponseException> RepositoryException(RepositoryException exception) {
+        LOGGER.error(exception.getMessage());
+        return createHttpResponse(BAD_REQUEST, exception.getMessage());
     }
 
     private ResponseEntity<HttpResponseException> createHttpResponse(HttpStatus httpStatus, String message) {
