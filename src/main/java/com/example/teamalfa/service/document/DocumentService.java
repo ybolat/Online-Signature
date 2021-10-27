@@ -65,17 +65,17 @@ public class DocumentService {
         }
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(documentFolder));
+            FileOutputStream fos = new FileOutputStream(documentFolder);
 
-            document.open();
             byte[] decoded = Base64.decodeBase64(documentBase64.getBytes());
-            document.add(Image.getInstance(decoded));
-            document.close();
+            fos.write(decoded);
+            fos.close();
         }
         catch (Exception e) {
             e.printStackTrace();
             throw new RepositoryException(String.format(ExceptionDescription.RepositoryException, "signed document", "creating"));
         }
+
 
         com.itextpdf.text.Document document1 = new com.itextpdf.text.Document();
         try {
