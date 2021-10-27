@@ -82,7 +82,7 @@ public class DocumentService {
             PdfWriter.getInstance(document1, new FileOutputStream(documentFolder));
             document1.open();
             Image img = Image.getInstance(singImageFolder);
-            img.setAbsolutePosition(10f, 10f);
+            img.setAbsolutePosition(100, 250);
             document1.add(img);
             document1.close();
         } catch (DocumentException | IOException e) {
