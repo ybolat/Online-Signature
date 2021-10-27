@@ -6,6 +6,7 @@ import com.example.teamalfa.model.document.Document;
 import com.example.teamalfa.repository.document.DocumentRepository;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.parser.Path;
 import org.apache.commons.codec.binary.Base64;
@@ -83,6 +84,7 @@ public class DocumentService {
             document1.open();
             Image img = Image.getInstance(singImageFolder);
             img.setAbsolutePosition(100, 250);
+            document1.add(new Paragraph("Sample 1: This is simple image demo."));
             document1.add(img);
             document1.close();
         } catch (DocumentException | IOException e) {
