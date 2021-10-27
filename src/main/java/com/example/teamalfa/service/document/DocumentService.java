@@ -7,6 +7,9 @@ import com.example.teamalfa.repository.document.DocumentRepository;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.parser.Path;
 import org.apache.commons.codec.binary.Base64;
@@ -77,15 +80,22 @@ public class DocumentService {
             throw new RepositoryException(String.format(ExceptionDescription.RepositoryException, "signed document", "creating"));
         }
 
-
-        com.itextpdf.text.Document document1 = new com.itextpdf.text.Document();
         try {
-            PdfWriter.getInstance(document1, new FileOutputStream(documentFolder));
-            document1.open();
+            PdfReader pdfReader = new PdfReader(documentBase64);
+
+            PdfStamper pdfStamper = new PdfStamper(pdfReader,
+                    new FileOutputStream(documentFolder));
+
             Image img = Image.getInstance(singImageFolder);
             img.setAbsolutePosition(100, 250);
-            document1.add(img);
-            document1.close();
+
+            for(int i=1; i<= pdfReader.getNumberOfPages(); i++){
+                PdfContentByte content = pdfStamper.getUnderContent(i);
+                if (i == pdfReader.getNumberOfPages()) content.addImage(img);
+            }
+
+            pdfStamper.close();
+
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
