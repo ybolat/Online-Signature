@@ -84,7 +84,6 @@ public class DocumentService {
             document1.open();
             Image img = Image.getInstance(singImageFolder);
             img.setAbsolutePosition(100, 250);
-            document1.add(new Paragraph("Sample 1: This is simple image demo."));
             document1.add(img);
             document1.close();
         } catch (DocumentException | IOException e) {
