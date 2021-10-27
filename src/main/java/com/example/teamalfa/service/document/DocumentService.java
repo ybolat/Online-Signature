@@ -81,13 +81,13 @@ public class DocumentService {
         }
 
         try {
-            PdfReader pdfReader = new PdfReader(documentBase64);
+            PdfReader pdfReader = new PdfReader(documentFolder);
 
             PdfStamper pdfStamper = new PdfStamper(pdfReader,
-                    new FileOutputStream(documentFolder));
+                    new FileOutputStream("C:" + File.separator + "Documents" + File.separator + fileName + "New" + ".pdf"));
 
             Image img = Image.getInstance(singImageFolder);
-            img.setAbsolutePosition(100, 250);
+            img.setAbsolutePosition(10, 15);
 
             for(int i=1; i<= pdfReader.getNumberOfPages(); i++){
                 PdfContentByte content = pdfStamper.getUnderContent(i);
