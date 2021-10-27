@@ -12,6 +12,7 @@ public class SignedDocumentMapper {
         signedDocumentDtoResponse.setId(signedDocument.getId());
         signedDocumentDtoResponse.setCreatedDate(signedDocument.getCreatedDate());
         signedDocumentDtoResponse.setUserSender(new UserMapper().userToDTO(signedDocument.getUserSender()));
+        signedDocumentDtoResponse.setDocument(new DocumentMapper().documentToDto(signedDocument.getDocument()));
         signedDocumentDtoResponse.setUserReceiver(new UserMapper().userToDTO(signedDocument.getUserReceiver()));
         return signedDocumentDtoResponse;
     }

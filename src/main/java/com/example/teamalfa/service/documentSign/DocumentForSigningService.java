@@ -68,7 +68,7 @@ public class DocumentForSigningService {
 
     public List<DocumentForSigningDtoResponse> getDocumentForSingingByReceiver(String username) {
         DocumentForSigningMapper documentForSigningMapper = new DocumentForSigningMapper();
-         return documentForSigningRepository.findByUserReceiverUsername(username).stream().map(documentForSigningMapper::documentForSigningToDto)
+         return documentForSigningRepository.findByUserReceiverUsername(username).stream().map(documentForSigningMapper::documentForSigningToDto).filter(v -> v.getStatus().equals(DocumentForSigningStatus.SENT))
                  .collect(Collectors.toList());
     }
 

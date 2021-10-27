@@ -75,8 +75,4 @@ public class SignedDocumentService {
         }
     }
 
-    private String singDocument(String documentBase64) {
-        return "";
-    }
-
 }
